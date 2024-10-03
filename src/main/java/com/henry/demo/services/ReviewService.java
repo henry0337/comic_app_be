@@ -1,6 +1,7 @@
 package com.henry.demo.services;
 
 import com.henry.demo.dto.ReviewDTO;
+import com.henry.demo.dto.ReviewRequest;
 import com.henry.demo.mappers.ReviewMapper;
 import com.henry.demo.models.Review;
 import com.henry.demo.repositories.ReviewRepository;
@@ -10,6 +11,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -21,30 +23,30 @@ public class ReviewService {
 
     public List<ReviewDTO> getAll() {
         return repository.findAll().stream()
-                .map(reviewMapper::toDTO)
+                .map(reviewMapper::modelToDTO)
                 .toList();
     }
 
     public ReviewDTO getById(int id) {
         Review review = repository.findById(id).orElse(new Review());
-        return reviewMapper.toDTO(review);
+        return reviewMapper.modelToDTO(review);
     }
 
     public List<ReviewDTO> getByComicId(int comicId) {
         List<Review> allReviewsBelongsToComic = repository.findByComicId(comicId);
         return allReviewsBelongsToComic.stream()
-                .map(reviewMapper::toDTO)
+                .map(reviewMapper::modelToDTO)
                 .toList();
     }
 
-    public Review insert(ReviewDTO reviewdto) {
-        Review review = reviewMapper.toModel(reviewdto);
+    public Review insert(ReviewRequest request) {
+        Review review = reviewMapper.requestToModel(request);
         return repository.save(review);
     }
 
-    public Review update(int id, @NonNull Review review) {
-        try {
-            Optional<Review> currentReview = repository.findById(id);
+    public Review update(int id, @NonNull ReviewRequest review) {
+        Optional<Review> currentReview = repository.findById(id);
+        if (currentReview.isPresent()) {
             Review newReview = currentReview.get();
 
             newReview.setComment(review.getComment());
@@ -53,11 +55,9 @@ public class ReviewService {
             newReview.setUserId(review.getUserId());
 
             return repository.save(newReview);
-        } catch (Exception e) {
-            Sentry.captureException(e);
-            Sentry.captureMessage(e.getLocalizedMessage());
+        } else {
+            throw new NoSuchElementException("This review doesn't exist!");
         }
-        return null;
     }
 
     public void delete(int id) {

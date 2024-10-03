@@ -16,6 +16,7 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
     public void onApplicationEvent(@NonNull ApplicationReadyEvent event) {
         final String url = "http://localhost:8080/swagger-ui/index.html";
         final String os = System.getProperty("os.name").toLowerCase();
+
         log.info("Current detected operating system: {}", os);
         try {
             if (os.contains("win")) {

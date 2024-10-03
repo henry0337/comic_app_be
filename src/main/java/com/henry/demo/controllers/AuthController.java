@@ -34,6 +34,13 @@ public class AuthController {
         return ResponseEntity.ok(authService.login(request));
     }
 
+    /**
+     * Trả về thông tin người dùng được lưu trong mã token.
+     * @param token Token được sử dụng để lấy thông tin chi tiết về người dùng
+     * @return Thông tin của người dùng được lưu trong token.
+     * @apiNote Ví lí do chưa rõ, nếu như bạn test hàm này trên Swagger UI thì sẽ luôn gặp lỗi không truyền vào header "<b>Authorization</b>" mặc dù đã truyền vào rồi.
+     * Do đó, với hàm này bạn nên test ở trên <b>Postman</b>.
+     */
     @GetMapping("/userInfo")
     @ResponseStatus(HttpStatus.OK)
     public User obtainUserInfoUsingJwtToken(@RequestHeader("Authorization") @NonNull String token) {
@@ -44,6 +51,11 @@ public class AuthController {
         return jwtService.obtainUserFromToken(token);
     }
 
+    /**
+     * Gửi yêu cầu thay đổi mật khẩu của người dùng lên máy chủ.
+     * @param request
+     * @return Token mới sau khi đổi mật khẩu.
+     */
     @PostMapping("/changePassword")
     @ResponseStatus(HttpStatus.OK)
     public AuthResponse changePassword(@RequestBody ChangePasswordRequest request) {
