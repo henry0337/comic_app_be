@@ -1,6 +1,7 @@
 package com.henry.demo.controllers;
 
 import com.henry.demo.dto.AuthResponse;
+import com.henry.demo.dto.ChangePasswordRequest;
 import com.henry.demo.dto.LoginRequest;
 import com.henry.demo.dto.RegisterRequest;
 import com.henry.demo.models.User;
@@ -33,11 +34,6 @@ public class AuthController {
         return ResponseEntity.ok(authService.login(request));
     }
 
-//    @PostMapping("/refreshToken")
-//    public ResponseEntity<AuthResponse> renew(@RequestBody RefreshTokenRequest request) {
-//        return ResponseEntity.ok(authService.renewToken(request));
-//    }
-
     @GetMapping("/userInfo")
     @ResponseStatus(HttpStatus.OK)
     public User obtainUserInfoUsingJwtToken(@RequestHeader("Authorization") @NonNull String token) {
@@ -45,7 +41,12 @@ public class AuthController {
             token = token.substring(7);
         }
 
-        // Do không dùng DTO nên trường `password` khi trả về sẽ luôn có giá trị `null`, đơn giản là vì vấn đề bảo mật.
         return jwtService.obtainUserFromToken(token);
+    }
+
+    @PostMapping("/changePassword")
+    @ResponseStatus(HttpStatus.OK)
+    public AuthResponse changePassword(@RequestBody ChangePasswordRequest request) {
+        return authService.changePassword(request);
     }
 }

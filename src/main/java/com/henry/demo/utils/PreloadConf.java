@@ -14,9 +14,9 @@ import static com.henry.demo.models.Role.ADMIN;
 import static com.henry.demo.models.Role.USER;
 
 /**
- * Như tên lớp đã đề cập, lớp này sẽ chịu trách nhiệm tải trước một vài cấu hình cần thiết.
- * Lớp này sẽ không được sử dụng trực tiếp trên mã nguồn mà sẽ do <b>Spring container</b> quản lý.<br>
- * (vd. Thêm tài khoản mặc định, cấu hình, vv.)
+ * Lớp này sẽ chịu trách nhiệm tải trước một vài cấu hình cần thiết. <br>
+ * Lớp này sẽ không được sử dụng trực tiếp trên mã nguồn (do được đánh dấu là {@link Configuration})
+ * mà sẽ do <b>Spring container</b> quản lý.
  */
 @Configuration
 @RequiredArgsConstructor
@@ -42,14 +42,14 @@ public class PreloadConf {
             }
 
             if (currentListOfUserAccount.isEmpty()) {
-                User local = User.builder()
-                        .name("Anonymous user")
+                User localUser = User.builder()
+                        .name("Local user")
                         .email("user@gmail.com")
-                        .password(new BCryptPasswordEncoder().encode("anonymous"))
+                        .password(new BCryptPasswordEncoder().encode("user"))
                         .role(USER)
                         .build();
 
-                userRepository.save(local);
+                userRepository.save(localUser);
             }
         };
     }

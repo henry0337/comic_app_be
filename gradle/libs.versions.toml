@@ -1,0 +1,31 @@
+[versions]
+boot = "3.3.4"
+dms = "1.1.6"
+sentry-gradle = "4.11.0"
+jjwt = "0.11.5"
+commons-lang = "3.17.0"
+swagger = "2.6.0"
+mapstruct = "1.6.2"
+
+[libraries]
+spring-data-jpa = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa" }
+spring-security = { group = "org.springframework.boot", name = "spring-boot-starter-security" }
+spring-web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
+spring-devtools = { group = "org.springframework.boot", name = "spring-boot-devtools" }
+mysql = { group = "com.mysql", name = "mysql-connector-j" }
+lombok = { group = "org.projectlombok", name = "lombok" }
+jjwt-api = { group = "io.jsonwebtoken", name = "jjwt-api", version.ref = "jjwt" }
+jjwt-jackson = { group = "io.jsonwebtoken", name = "jjwt-jackson", version.ref = "jjwt" }
+jjwt-impl = { group = "io.jsonwebtoken", name = "jjwt-impl", version.ref = "jjwt" }
+apache-commons-lang = { group = "org.apache.commons", name = "commons-lang3", version.ref = "commons-lang" }
+swagger-ui = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version.ref = "swagger" }
+mapstruct = { group = "org.mapstruct", name = "mapstruct", version.ref = "mapstruct" }
+mapstruct-processor = { group = "org.mapstruct", name = "mapstruct-processor", version.ref = "mapstruct" }
+boot-test = { group = "org.springframework.boot", name = "spring-boot-starter-test" }
+security-test = { group = "org.springframework.security", name = "spring-security-test" }
+junit-platform-launcher = { group = "org.junit.platform", name = "junit-platform-launcher" }
+
+[plugins]
+springframework-boot = { id = "org.springframework.boot", version.ref = "boot" }
+dependency-management-spring = { id = "io.spring.dependency-management", version.ref = "dms" }
+sentry-jvm-gradle = { id = "io.sentry.jvm.gradle", version.ref = "sentry-gradle" }

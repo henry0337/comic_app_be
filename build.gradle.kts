@@ -2,77 +2,90 @@ import java.io.FileInputStream
 import java.util.*
 
 plugins {
-	java
-	id("org.springframework.boot") version "3.3.4"
-	id("io.spring.dependency-management") version "1.1.6"
-	id("io.sentry.jvm.gradle") version "4.11.0"
+    java
+    alias(libs.plugins.springframework.boot)
+    alias(libs.plugins.dependency.management.spring)
+    alias(libs.plugins.sentry.jvm.gradle)
 }
 
 group = "com.henry"
 version = "0.0.1-SNAPSHOT"
 
 val localProperties = Properties().apply {
-	load(FileInputStream(rootProject.file("local.properties")))
+    load(FileInputStream(rootProject.file("local.properties")))
 }
 
 val sentryAuthToken: String = localProperties.getProperty("SENTRY_AUTH_TOKEN")
-	?: throw GradleException("SENTRY_AUTH_TOKEN not found in local.properties")
+    ?: throw GradleException("SENTRY_AUTH_TOKEN not found in local.properties")
 
 sentry {
-	includeSourceContext = true
+    includeSourceContext = true
 
-	org = "henry-qi"
-	projectName = "bounty-hunter"
-	authToken = sentryAuthToken
+    org = "henry-qi"
+    projectName = "bounty-hunter"
+    authToken = sentryAuthToken
 }
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
 
 configurations {
-	compileOnly {
-		extendsFrom(configurations.annotationProcessor.get())
-	}
+    compileOnly {
+        extendsFrom(configurations.annotationProcessor.get())
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	implementation("org.springframework.boot:spring-boot-starter-security")
-	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("org.springframework.boot:spring-boot-starter-data-rest") // Không nên dùng nếu bạn muốn cấu hình controller thủ công.
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
+    implementation(libs.spring.data.jpa)
+    implementation(libs.spring.security)
+    implementation(libs.spring.web)
+    developmentOnly(libs.spring.devtools)
 
-	// MySQL Driver
-	runtimeOnly("com.mysql:mysql-connector-j")
+    // MySQL Driver
+    runtimeOnly(libs.mysql)
 
-	// Lombok
-	compileOnly("org.projectlombok:lombok")
-	annotationProcessor("org.projectlombok:lombok")
+    // Lombok
+    compileOnly(libs.lombok)
+    annotationProcessor(libs.lombok)
 
-	// JJWT
-	implementation("io.jsonwebtoken:jjwt-api:0.11.5")
-	implementation("io.jsonwebtoken:jjwt-jackson:0.11.5")
-	implementation("io.jsonwebtoken:jjwt-impl:0.11.5")
+    // JJWT
+    implementation(libs.jjwt.api)
+    implementation(libs.jjwt.jackson)
+    implementation(libs.jjwt.impl)
 
-	// Apache Commons Lang
-	implementation("org.apache.commons:commons-lang3:3.17.0")
+    // Apache Commons Lang
+    implementation(libs.apache.commons.lang)
 
-	// Swagger UI
-	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
+    // Swagger UI
+    implementation(libs.swagger.ui)
 
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.springframework.security:spring-security-test")
+    // MapStruct
+    implementation(libs.mapstruct)
+    annotationProcessor(libs.mapstruct.processor)
 
-	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation(libs.boot.test)
+    testImplementation(libs.security.test)
+
+    testRuntimeOnly(libs.junit.platform.launcher)
 }
 
 tasks.withType<Test> {
-	useJUnitPlatform()
+    useJUnitPlatform()
+}
+
+tasks.compileJava {
+    options.compilerArgs.addAll(
+        mutableListOf(
+            "-Amapstruct.suppressGeneratorTimestamp=true",
+            "-Amapstruct.suppressGeneratorVersionInfoComment=true",
+            "-Amapstruct.verbose=true"
+        )
+    )
 }

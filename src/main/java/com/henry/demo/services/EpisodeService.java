@@ -1,7 +1,7 @@
 package com.henry.demo.services;
 
-import com.henry.demo.models.Comic;
-import com.henry.demo.repositories.ComicRepository;
+import com.henry.demo.models.Episode;
+import com.henry.demo.repositories.EpisodeRepository;
 import io.sentry.Sentry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.lang.NonNull;
@@ -13,37 +13,31 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class EpisodeService {
-    private final ComicRepository repository;
+    private final EpisodeRepository repository;
 
-    public List<Comic> getAll() {
+    public List<Episode> getAll() {
         return repository.findAll();
     }
 
-    public Comic getById(int id) {
+    public Episode getById(int id) {
         return repository.findById(id).orElse(null);
     }
 
-    public Comic insert(Comic comic) {
-        return repository.save(comic);
+    public Episode insert(Episode episode) {
+        return repository.save(episode);
     }
 
-    public Comic update(int id, @NonNull Comic comic) {
+    public Episode update(int id, @NonNull Episode episode) {
         try {
-            Optional<Comic> currentComic = repository.findById(id);
-            Comic newComic = currentComic.get();
+            Optional<Episode> currentEpisode = repository.findById(id);
+            Episode newEpisode = currentEpisode.get();
 
-            newComic.setTitle(comic.getTitle());
-            newComic.setDescription(comic.getDescription());
-            newComic.setPoster(comic.getPoster());
-            newComic.setReleaseDate(comic.getReleaseDate());
-            newComic.setView(comic.getView());
-            newComic.setRating(comic.getRating());
-            newComic.setType(comic.getType());
-            newComic.setStatus(comic.getStatus());
-            newComic.setPublishedAt(comic.getPublishedAt());
-            newComic.setReview(comic.getReview());
+            newEpisode.setTitle(episode.getTitle());
+            newEpisode.setStatus(episode.getStatus());
+            newEpisode.setComicId(episode.getComicId());
+            newEpisode.setPublishedAt(episode.getPublishedAt());
 
-            return repository.save(newComic);
+            return repository.save(newEpisode);
         } catch (Exception e) {
             Sentry.captureException(e);
             Sentry.captureMessage(e.getLocalizedMessage());

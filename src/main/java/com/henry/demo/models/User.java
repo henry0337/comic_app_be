@@ -79,6 +79,7 @@ public class User implements UserDetails {
     @Builder.Default
     private Date updatedAt = new Date();
 
+    @Getter
     @ElementCollection
     private List<Review> reviews;
 
