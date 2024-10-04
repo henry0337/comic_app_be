@@ -29,7 +29,6 @@ public class Actor {
 
     private String avatar;
 
-    // TODO: Ủa rồi trường này để làm gì ???
     @Temporal(TemporalType.DATE)
     private Date birthday;
 

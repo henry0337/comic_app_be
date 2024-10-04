@@ -1,14 +1,14 @@
 package com.henry.demo.mappers;
 
 import com.henry.demo.dto.UserDTO;
-import com.henry.demo.dto.UserRequest;
+import com.henry.demo.holders.requests.UserRequest;
 import com.henry.demo.models.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface UserMapper {
-    @Mapping(target = "email", source = "email")
+    @Mapping(target = "email", expression = "java(user.getUsername())")
     UserDTO modelToDTO(User user);
 
     @Mapping(target = "password", ignore = true)

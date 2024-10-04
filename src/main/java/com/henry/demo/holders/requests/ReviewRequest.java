@@ -1,4 +1,4 @@
-package com.henry.demo.dto;
+package com.henry.demo.holders.requests;
 
 import lombok.Data;
 

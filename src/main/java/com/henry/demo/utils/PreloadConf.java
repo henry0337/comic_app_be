@@ -56,7 +56,7 @@ public class PreloadConf {
     }
 
     /**
-     * Khởi tạo cơ sở dữ liệu cho dự án.
+     * Khởi tạo cơ sở dữ liệu cho dự án chỉ khi chưa tồn tại.
      * @param jdbcTemplate
      * @return Đối tượng {@link CommandLineRunner} thực hiện khởi tạo cơ sở dữ liệu mới.
      */

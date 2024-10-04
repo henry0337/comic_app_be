@@ -50,6 +50,7 @@ public class JwtService {
     }
 
     public User obtainUserFromToken(final String token) {
+        if (token == null) return null;
         Claims claims = extractAllClaims(token);
 
         return User.builder()

@@ -1,11 +1,10 @@
 package com.henry.demo.services;
 
 import com.henry.demo.dto.ReviewDTO;
-import com.henry.demo.dto.ReviewRequest;
+import com.henry.demo.holders.requests.ReviewRequest;
 import com.henry.demo.mappers.ReviewMapper;
 import com.henry.demo.models.Review;
 import com.henry.demo.repositories.ReviewRepository;
-import io.sentry.Sentry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;

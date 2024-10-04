@@ -1,7 +1,7 @@
 package com.henry.demo.services;
 
 import com.henry.demo.dto.UserDTO;
-import com.henry.demo.dto.UserRequest;
+import com.henry.demo.holders.requests.UserRequest;
 import com.henry.demo.mappers.UserMapper;
 import com.henry.demo.models.User;
 import com.henry.demo.repositories.UserRepository;
@@ -39,6 +39,7 @@ public class UserService {
 
     public User update(int id, UserRequest request) {
         // TODO: Tiếp tục triển khai
+        return null;
     }
 
     public void delete(String email) {

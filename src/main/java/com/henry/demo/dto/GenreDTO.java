@@ -2,10 +2,11 @@ package com.henry.demo.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
-public class AuthResponse {
-    private String token;
-    private String refreshToken;
+public class GenreDTO {
+    private String name;
 }

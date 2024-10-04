@@ -1,7 +1,7 @@
 package com.henry.demo.mappers;
 
 import com.henry.demo.dto.ReviewDTO;
-import com.henry.demo.dto.ReviewRequest;
+import com.henry.demo.holders.requests.ReviewRequest;
 import com.henry.demo.models.Review;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

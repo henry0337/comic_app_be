@@ -46,6 +46,8 @@ dependencies {
     implementation(libs.spring.data.jpa)
     implementation(libs.spring.security)
     implementation(libs.spring.web)
+    implementation(libs.spring.oauth2.resource)
+    implementation(libs.spring.mail)
     developmentOnly(libs.spring.devtools)
 
     // MySQL Driver

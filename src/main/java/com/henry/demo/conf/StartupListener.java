@@ -20,7 +20,7 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
         log.info("Current detected operating system: {}", os);
         try {
             if (os.contains("win")) {
-                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
+                Runtime.getRuntime().exec("cmd /c start " + url);
             } else if (os.contains("mac")) {
                 Runtime.getRuntime().exec("open " + url);
             } else if (os.contains("nix") || os.contains("nux")) {
