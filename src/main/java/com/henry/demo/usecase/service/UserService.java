@@ -37,7 +37,7 @@ public class UserService {
         return repository.save(savingUser);
     }
 
-    public User update(int id, UserRequest request) {
+    public User update(String email, User request) {
         // TODO: Tiếp tục triển khai
         return null;
     }

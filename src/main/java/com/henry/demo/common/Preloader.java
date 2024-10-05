@@ -23,16 +23,6 @@ public class Preloader {
 
     private final UserRepository userRepository;
 
-    /**
-     * Khởi tạo cơ sở dữ liệu mới.
-     * @param jdbcTemplate
-     * @return Đối tượng {@link CommandLineRunner} thực hiện khởi tạo cơ sở dữ liệu mới.
-     */
-    @Bean
-    CommandLineRunner initDatabase(JdbcTemplate jdbcTemplate) {
-        return args -> jdbcTemplate.execute("CREATE DATABASE IF NOT EXISTS comic_app");
-    }
-
     @Bean
     CommandLineRunner initData() {
         return args -> {

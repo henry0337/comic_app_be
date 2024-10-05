@@ -27,7 +27,7 @@ public final class Endpoint {
     // Danh sách các tham số (thường được dùng trong @PathVariable hoặc là @RequestParams)
     // Cú pháp đặt tên: WITH_<tên_tham_số>_AS_PARAM
     public static final String WITH_ID_AS_PARAM = "/{id}";
-
+    public static final String WITH_EMAIL_AS_PARAM = "/{email}";
 
     // Endpoint của `Actor`
     public static final String ACTOR = BASE_ROUTE + ACTOR_ROUTE;
