@@ -1,6 +1,7 @@
 package com.henry.demo.adapter.controller;
 
 import com.henry.demo.adapter.dto.ComicDTO;
+import com.henry.demo.domain.model.Comic;
 import com.henry.demo.infrastructure.config.Endpoint;
 import com.henry.demo.usecase.service.ComicService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -25,5 +26,27 @@ public class ComicController {
         return service.getAll();
     }
 
+    @GetMapping(Endpoint.WITH_ID_AS_PARAM)
+    @ResponseStatus(HttpStatus.OK)
+    public ComicDTO getById(@PathVariable int id) {
+        return service.getById(id);
+    }
 
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Comic insert(@RequestBody ComicDTO comicDTO) {
+        return service.insert(comicDTO);
+    }
+
+    @PutMapping(Endpoint.WITH_ID_AS_PARAM)
+    @ResponseStatus(HttpStatus.OK)
+    public Comic insert(@PathVariable int id, @RequestBody ComicDTO comicDTO) {
+        return service.update(id, comicDTO);
+    }
+
+    @DeleteMapping(Endpoint.WITH_ID_AS_PARAM)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable int id) {
+        service.delete(id);
+    }
 }

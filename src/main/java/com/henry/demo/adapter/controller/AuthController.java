@@ -1,10 +1,10 @@
 package com.henry.demo.adapter.controller;
 
-import com.henry.demo.adapter.annotation.OnlyAdminAndModerator;
 import com.henry.demo.adapter.dto.request.ChangePasswordRequest;
 import com.henry.demo.adapter.dto.request.LoginRequest;
 import com.henry.demo.adapter.dto.request.RegisterRequest;
 import com.henry.demo.adapter.dto.response.AuthResponse;
+import com.henry.demo.common.annotation.Incubating;
 import com.henry.demo.domain.model.User;
 import com.henry.demo.infrastructure.config.Endpoint;
 import com.henry.demo.usecase.service.AuthService;
@@ -81,6 +81,7 @@ public class AuthController {
      * Gửi yêu cầu thay đổi mật khẩu của người dùng lên máy chủ.
      * @return Token mới sau khi đổi mật khẩu.
      */
+    @Incubating
     @PostMapping(Endpoint.CHANGE_PASSWORD)
     @ResponseStatus(HttpStatus.OK)
     public Object changePassword(@RequestBody ChangePasswordRequest request) {

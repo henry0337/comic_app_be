@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,9 +36,19 @@ public class UserService {
         return mapper.modelToDTO(user);
     }
 
-    public User insert(UserRequest request) {
-        User savingUser = mapper.requestToModel(request);
-        return repository.save(savingUser);
+    public User insert(@NonNull UserRequest request) {
+        User user = User.builder()
+                .name(request.getName())
+                .email(request.getEmail())
+                .password(new BCryptPasswordEncoder().encode(request.getPassword()))
+                .role(request.getRole())
+                .isAccountExpired(request.getIsAccountExpired())
+                .isAccountLocked(request.getIsAccountLocked())
+                .isCredentialsExpired(request.getIsCredentialsExpired())
+                .canAuthenticate(request.getCanAuthenticate())
+                .build();
+
+        return repository.save(user);
     }
 
     public User update(String email, @NonNull UserRequest request) {

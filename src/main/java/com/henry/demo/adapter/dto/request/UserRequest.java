@@ -7,7 +7,7 @@ import lombok.Data;
 public class UserRequest {
     private String name;
     private String email;
-    private Role role;
+    private Role role = Role.USER;
     private String password;
     private short isAccountExpired = 0;
     private short isAccountLocked = 0;

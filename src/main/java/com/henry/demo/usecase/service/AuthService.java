@@ -53,7 +53,6 @@ public class AuthService {
         return new AuthResponse(jwt, refreshToken);
     }
 
-    @Incubating
     @Nullable
     public Object changePassword(@NonNull ChangePasswordRequest body) {
         String token, refreshToken;

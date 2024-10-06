@@ -30,8 +30,8 @@ public class ImageService {
         return mapper.modelToDTO(image);
     }
 
-    public Image insert(ImageDTO imageDTO) {
-        Image image = mapper.dtoToModel(imageDTO);
+    public Image insert(ImageRequest request) {
+        Image image = mapper.requestToModel(request);
         return repository.save(image);
     }
 

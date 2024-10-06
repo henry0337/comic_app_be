@@ -1,6 +1,7 @@
 package com.henry.demo.adapter.mapper;
 
 import com.henry.demo.adapter.dto.ImageDTO;
+import com.henry.demo.adapter.dto.request.ImageRequest;
 import com.henry.demo.adapter.helper.ImageMapperHelper;
 import com.henry.demo.domain.model.Image;
 import org.mapstruct.Mapper;
@@ -17,5 +18,10 @@ public interface ImageMapper {
     @Mapping(target = "episodeId", source = "episode.id")
     @Mapping(target = "createdAt", ignore = true)
     Image dtoToModel(ImageDTO imageDTO);
+
+    @Mapping(target = "updatedAt", ignore = true)
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    Image requestToModel(ImageRequest request);
 }
 
