@@ -1,5 +1,6 @@
 package com.henry.demo.adapter.controller;
 
+import com.henry.demo.adapter.annotation.OnlyAdminAndModerator;
 import com.henry.demo.adapter.dto.request.ChangePasswordRequest;
 import com.henry.demo.adapter.dto.request.LoginRequest;
 import com.henry.demo.adapter.dto.request.RegisterRequest;
@@ -10,6 +11,7 @@ import com.henry.demo.usecase.service.AuthService;
 import com.henry.demo.usecase.service.JwtService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.lang.NonNull;
@@ -23,7 +25,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(Endpoint.AUTH)
 @CrossOrigin("*")
 @RequiredArgsConstructor
+@Tag(name = "Xác thực người dùng")
 public class AuthController {
+
     private final AuthService authService;
     private final JwtService jwtService;
 
@@ -39,7 +43,7 @@ public class AuthController {
     }
 
     /**
-     * Hàm dùng để đăng nhập, xác thực tới máy chủ.
+     * Hàm dùng để gửi yêu cầu xác nhận đăng nhập tới máy chủ.
      * @param request Thông tin dùng để xác thực.
      * @return Token được mã hóa để lưu thông tin người dùng.
      */
@@ -55,7 +59,7 @@ public class AuthController {
      *
      * @param token Token được sử dụng để lấy thông tin chi tiết về người dùng.
      * @return Thông tin của người dùng được lưu trong token.
-     * @implNote Nếu như bạn muốn xác thực trên <b>Swagger UI</b>, hãy đảm bảo rằng bạn đang KHÔNG truyền mã xác thực vào biến {@code token},
+     * @apiNote Nếu như bạn muốn test tính năng xác thực trên <b>Swagger UI</b>, hãy đảm bảo rằng bạn đang KHÔNG truyền mã xác thực vào biến {@code token},
      * thay vào đó hãy truyền vào phần <b>Bearer Token</b> trên đó (phần này nằm trong nút <b>Authorize</b> ở góc trên bên phải).
      */
     @GetMapping(Endpoint.USER_INFO)
@@ -75,8 +79,6 @@ public class AuthController {
 
     /**
      * Gửi yêu cầu thay đổi mật khẩu của người dùng lên máy chủ.
-     *
-     * @param request
      * @return Token mới sau khi đổi mật khẩu.
      */
     @PostMapping(Endpoint.CHANGE_PASSWORD)

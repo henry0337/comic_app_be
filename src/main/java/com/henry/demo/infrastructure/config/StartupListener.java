@@ -14,17 +14,16 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 
     @Override
     public void onApplicationEvent(@NonNull ApplicationReadyEvent event) {
-        final String url = "http://localhost:8080" + Endpoint.SWAGGER_UI + "/index.html";
+        final String swagger = "http://localhost:8080" + Endpoint.SWAGGER_UI + "/index.html";
         final String os = System.getProperty("os.name").toLowerCase();
 
-        log.info("Current detected operating system: {}", os);
         try {
             if (os.contains("win")) {
-                Runtime.getRuntime().exec(TerminalCommand.WINDOWS_COMMAND + url);
+                Runtime.getRuntime().exec(TerminalCommand.WINDOWS_COMMAND + swagger);
             } else if (os.contains("mac")) {
-                Runtime.getRuntime().exec(TerminalCommand.MACOS_COMMAND + url);
+                Runtime.getRuntime().exec(TerminalCommand.MACOS_COMMAND + swagger);
             } else if (os.contains("nix") || os.contains("nux")) {
-                Runtime.getRuntime().exec(TerminalCommand.LINUX_COMMAND + url);
+                Runtime.getRuntime().exec(TerminalCommand.LINUX_COMMAND + swagger);
             }
         } catch (Exception e) {
             Sentry.captureException(e);

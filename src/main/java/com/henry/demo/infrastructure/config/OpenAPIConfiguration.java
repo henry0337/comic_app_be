@@ -12,7 +12,7 @@ import static com.henry.demo.infrastructure.constant.OpenAPIConstant.*;
 /**
  * Lớp cấu hình OpenAPI
  *
- * @see <a href="https://github.com/oai/openapi-specification/blob/main/versions/3.1.0.md">OpenAPI Specification</a>
+ * @see <a href="https://github.com/oai/openapi-specification/blob/main/versions/3.1.0.md">OpenAPI Specification v3</a>
  */
 @Configuration
 public class OpenAPIConfiguration {

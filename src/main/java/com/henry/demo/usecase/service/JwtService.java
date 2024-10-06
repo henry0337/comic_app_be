@@ -2,7 +2,7 @@ package com.henry.demo.usecase.service;
 
 import com.henry.demo.domain.model.Role;
 import com.henry.demo.domain.model.User;
-import com.henry.demo.usecase.utility.JwtUtility;
+import com.henry.demo.utility.JwtHelper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -72,7 +72,7 @@ public class JwtService {
 
     @NonNull
     private SecretKey getSignInKey() {
-        byte[] key = Decoders.BASE64.decode(JwtUtility.findBareTokenInProperty());
+        byte[] key = Decoders.BASE64.decode(JwtHelper.findBareTokenInProperty());
         return Keys.hmacShaKeyFor(key);
     }
 

@@ -6,13 +6,16 @@ import com.henry.demo.adapter.mapper.UserMapper;
 import com.henry.demo.domain.model.User;
 import com.henry.demo.domain.repository.UserRepository;
 import io.sentry.Sentry;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.lang.NonNull;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -37,8 +40,25 @@ public class UserService {
         return repository.save(savingUser);
     }
 
-    public User update(String email, User request) {
-        // TODO: Tiếp tục triển khai
+    public User update(String email, @NonNull UserRequest request) {
+        try {
+            Optional<User> currentUser = repository.findByEmail(email);
+            User newUser = currentUser.orElseThrow();
+
+            newUser.setName(request.getName());
+            newUser.setPassword(new BCryptPasswordEncoder().encode(request.getPassword()));
+            newUser.setName(request.getName());
+            newUser.setCanAuthenticate(request.getCanAuthenticate());
+            newUser.setRole(request.getRole());
+            newUser.setIsAccountExpired(request.getIsAccountExpired());
+            newUser.setIsAccountLocked(request.getIsAccountLocked());
+            newUser.setIsCredentialsExpired(request.getIsCredentialsExpired());
+
+            return repository.save(newUser);
+        } catch (EntityNotFoundException e) {
+            Sentry.captureException(e);
+            Sentry.captureMessage(e.getLocalizedMessage());
+        }
         return null;
     }
 
@@ -50,7 +70,7 @@ public class UserService {
     public final UserDetailsService userDetailsService() {
         return username -> {
             try {
-                return repository.findByEmail(username).orElse(null);
+                return repository.findByEmail(username).orElseThrow();
             } catch (UsernameNotFoundException e) {
                 Sentry.captureException(e);
                 Sentry.captureMessage(e.getLocalizedMessage());

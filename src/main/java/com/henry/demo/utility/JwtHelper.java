@@ -1,4 +1,4 @@
-package com.henry.demo.usecase.utility;
+package com.henry.demo.utility;
 
 import io.sentry.Sentry;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 @Slf4j
-public final class JwtUtility {
+public final class JwtHelper {
 
     /**
      * Lấy ra mã bí mật có độ dài 256-bit nguyên bản từ tệp {@code local.properties}.

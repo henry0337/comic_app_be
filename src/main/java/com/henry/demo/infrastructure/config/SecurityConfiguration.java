@@ -42,7 +42,6 @@ public class SecurityConfiguration {
                                 Endpoint.AUTH + Endpoint.ALL_INSIDE,
                                 Endpoint.OPENAPI_DOCS + Endpoint.ALL_INSIDE,
                                 Endpoint.SWAGGER_UI + Endpoint.ALL_INSIDE,
-                                Endpoint.BASE_ROUTE + Endpoint.ALL_INSIDE,
                                 Endpoint.ACTOR + Endpoint.ALL_INSIDE,
                                 Endpoint.COMIC + Endpoint.ALL_INSIDE,
                                 Endpoint.EPISODE + Endpoint.ALL_INSIDE,

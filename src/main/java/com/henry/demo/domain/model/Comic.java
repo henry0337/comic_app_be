@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -61,5 +62,7 @@ public class Comic {
     @Temporal(TemporalType.DATE)
     private Date publishedAt;
 
-    private List<String> review;
+    @Builder.Default
+    @ElementCollection
+    private List<String> review = new ArrayList<>();
 }

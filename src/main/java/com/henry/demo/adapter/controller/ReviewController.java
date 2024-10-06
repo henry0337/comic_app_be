@@ -4,6 +4,7 @@ import com.henry.demo.adapter.dto.ReviewDTO;
 import com.henry.demo.adapter.dto.request.ReviewRequest;
 import com.henry.demo.domain.model.Review;
 import com.henry.demo.usecase.service.ReviewService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.List;
 @RequestMapping("/api/reviews")
 @CrossOrigin("*")
 @RequiredArgsConstructor
+@Tag(name = "Đánh giá (Review)")
 public class ReviewController {
 
     private final ReviewService service;

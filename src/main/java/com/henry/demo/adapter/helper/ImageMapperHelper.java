@@ -1,7 +1,7 @@
 package com.henry.demo.adapter.helper;
 
 import com.henry.demo.domain.model.Episode;
-import com.henry.demo.usecase.service.EpisodeService;
+import com.henry.demo.domain.repository.EpisodeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class ImageMapperHelper {
 
-    private final EpisodeService service;
+    private final EpisodeRepository repository;
 
     public Episode map(int episodeId) {
-        return service.getById(episodeId);
+        return repository.findById(episodeId).orElseThrow();
     }
 }

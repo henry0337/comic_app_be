@@ -1,5 +1,7 @@
 package com.henry.demo.usecase.service;
 
+import com.henry.demo.adapter.dto.GenreDTO;
+import com.henry.demo.adapter.mapper.GenreMapper;
 import com.henry.demo.domain.model.Genre;
 import com.henry.demo.domain.repository.GenreRepository;
 import io.sentry.Sentry;
@@ -15,23 +17,28 @@ import java.util.Optional;
 public class GenreService {
 
     private final GenreRepository repository;
+    private final GenreMapper mapper;
 
-    public List<Genre> getAll() {
-        return repository.findAll();
+    public List<GenreDTO> getAll() {
+        return repository.findAll().stream()
+                .map(mapper::modelToDTO)
+                .toList();
     }
 
-    public Genre getById(int id) {
-        return repository.findById(id).orElse(null);
+    public GenreDTO getById(int id) {
+        Genre genre = repository.findById(id).orElse(null);
+        return mapper.modelToDTO(genre);
     }
 
-    public Genre insert(Genre genre) {
+    public Genre insert(GenreDTO genreDTO) {
+        Genre genre = mapper.dtoToModel(genreDTO);
         return repository.save(genre);
     }
 
-    public Genre update(int id, @NonNull Genre genre) {
+    public Genre update(int id, @NonNull GenreDTO genre) {
         try {
             Optional<Genre> currentGenre = repository.findById(id);
-            Genre newGenre = currentGenre.get();
+            Genre newGenre = currentGenre.orElseThrow();
 
             newGenre.setName(genre.getName());
 

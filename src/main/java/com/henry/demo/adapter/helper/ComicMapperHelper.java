@@ -1,6 +1,7 @@
 package com.henry.demo.adapter.helper;
 
 import com.henry.demo.domain.model.Comic;
+import com.henry.demo.domain.repository.ComicRepository;
 import com.henry.demo.usecase.service.ComicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -9,9 +10,9 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class ComicMapperHelper {
 
-    private final ComicService service;
+    private final ComicRepository repository;
 
     public Comic map(int comicId) {
-        return service.getById(comicId);
+        return repository.findById(comicId).orElseThrow();
     }
 }

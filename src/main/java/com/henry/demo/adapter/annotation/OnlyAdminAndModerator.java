@@ -1,17 +1,15 @@
 package com.henry.demo.adapter.annotation;
 
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.access.annotation.Secured;
 
 import java.lang.annotation.*;
 
 /**
- * Thông báo cho Spring biết rằng chỉ có 2 vai trò là {@code ROLE_ADMIN} hoặc {@code ROLE_MODERATOR}
- * mới có thể sử dụng lớp hoặc phương thức nào đó được đánh dấu bằng chú thích này.
- *
- * @see PreAuthorize @PreAuthorize
+ * Chú thích rằng chỉ cho phép những ai có vai trò là {@code ROLE_ADMIN} hoặc {@code ROLE_MODERATOR}
+ * mới có thể sử dụng các lớp và phương thức được đánh dấu bằng chú thích này.
  */
-@Target({ElementType.METHOD, ElementType.TYPE})
+@Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@PreAuthorize("hasRole('ADMIN') || hasRole('MODERATOR')")
+@Secured({"ROLE_ADMIN", "ROLE_MODERATOR"})
 public @interface OnlyAdminAndModerator {}

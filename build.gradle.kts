@@ -65,8 +65,8 @@ dependencies {
     // Apache Commons Lang
     implementation(libs.apache.commons.lang)
 
-    // Swagger UI
-    implementation(libs.swagger.ui)
+    // Swagger
+    implementation(libs.swagger)
 
     // MapStruct
     implementation(libs.mapstruct)
@@ -90,4 +90,11 @@ tasks.compileJava {
             "-Amapstruct.verbose=true"
         )
     )
+}
+
+tasks.withType<Checkstyle> {
+    reports {
+        xml.required = false
+        html.required = true
+    }
 }

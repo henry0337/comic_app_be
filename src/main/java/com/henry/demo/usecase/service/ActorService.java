@@ -43,7 +43,7 @@ public class ActorService {
     public Actor update(int id, @NonNull ActorDTO actor) {
         try {
             Optional<Actor> currentActor = repository.findById(id);
-            Actor newActor = currentActor.get();
+            Actor newActor = currentActor.orElseThrow();
 
             newActor.setName(actor.getName());
             newActor.setBirthday(actor.getBirthday());

@@ -2,11 +2,6 @@ package com.henry.demo.infrastructure.config;
 
 /**
  * Lớp định nghĩa các <b>route</b> của API.
- *
- * @implNote Nếu bạn muốn định nghĩa thêm route mới thì hãy định nghĩa thêm vào trong này.<br><br>
- * Tin tôi đi, bạn sẽ không muốn nhìn dự án trở nên dễ hiểu quá đâu :D
- * @apiNote Do liên quan trực tiếp tới một trong những thứ quan trọng nhất của một backend, <b>Route</b>,
- * nên lớp này được ưu tiên đặt trong thư mục {@code config} thay vì {@code constant}.
  */
 public final class Endpoint {
 

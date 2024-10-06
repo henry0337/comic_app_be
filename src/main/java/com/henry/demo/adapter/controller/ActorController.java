@@ -4,6 +4,7 @@ import com.henry.demo.adapter.dto.ActorDTO;
 import com.henry.demo.domain.model.Actor;
 import com.henry.demo.infrastructure.config.Endpoint;
 import com.henry.demo.usecase.service.ActorService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.List;
 @RequestMapping(Endpoint.ACTOR)
 @CrossOrigin("*")
 @RequiredArgsConstructor
+@Tag(name = "Actor (Diễn viên)")
 public class ActorController {
 
     private final ActorService service;

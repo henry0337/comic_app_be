@@ -1,5 +1,7 @@
 package com.henry.demo.usecase.service;
 
+import com.henry.demo.adapter.dto.ComicDTO;
+import com.henry.demo.adapter.mapper.ComicMapper;
 import com.henry.demo.domain.model.Comic;
 import com.henry.demo.domain.repository.ComicRepository;
 import io.sentry.Sentry;
@@ -13,35 +15,41 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class ComicService {
+
     private final ComicRepository repository;
+    private final ComicMapper mapper;
 
-    public List<Comic> getAll() {
-        return repository.findAll();
+    public List<ComicDTO> getAll() {
+        return repository.findAll().stream()
+                .map(mapper::modelToDTO)
+                .toList();
     }
 
-    public Comic getById(int id) {
-        return repository.findById(id).orElse(null);
+    public ComicDTO getById(int id) {
+        Comic comic = repository.findById(id).orElse(null);
+        return mapper.modelToDTO(comic);
     }
 
-    public Comic insert(Comic comic) {
+    public Comic insert(ComicDTO comicDTO) {
+        Comic comic = mapper.dtoToModel(comicDTO);
         return repository.save(comic);
     }
 
-    public Comic update(int id, @NonNull Comic comic) {
+    public Comic update(int id, @NonNull ComicDTO comicDTO) {
         try {
             Optional<Comic> currentComic = repository.findById(id);
             Comic newComic = currentComic.get();
 
-            newComic.setTitle(comic.getTitle());
-            newComic.setDescription(comic.getDescription());
-            newComic.setPoster(comic.getPoster());
-            newComic.setReleaseDate(comic.getReleaseDate());
-            newComic.setView(comic.getView());
-            newComic.setRating(comic.getRating());
-            newComic.setType(comic.getType());
-            newComic.setStatus(comic.getStatus());
-            newComic.setPublishedAt(comic.getPublishedAt());
-            newComic.setReview(comic.getReview());
+            newComic.setTitle(comicDTO.getTitle());
+            newComic.setDescription(comicDTO.getDescription());
+            newComic.setPoster(comicDTO.getPoster());
+            newComic.setReleaseDate(comicDTO.getReleaseDate());
+            newComic.setView(comicDTO.getView());
+            newComic.setRating(comicDTO.getRating());
+            newComic.setType(comicDTO.getType());
+            newComic.setStatus(comicDTO.getStatus());
+            newComic.setPublishedAt(comicDTO.getPublishedAt());
+            newComic.setReview(comicDTO.getReview());
 
             return repository.save(newComic);
         } catch (Exception e) {

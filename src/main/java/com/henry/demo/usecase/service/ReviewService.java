@@ -18,28 +18,28 @@ import java.util.Optional;
 public class ReviewService {
 
     private final ReviewRepository repository;
-    private final ReviewMapper reviewMapper;
+    private final ReviewMapper mapper;
 
     public List<ReviewDTO> getAll() {
         return repository.findAll().stream()
-                .map(reviewMapper::modelToDTO)
+                .map(mapper::modelToDTO)
                 .toList();
     }
 
     public ReviewDTO getById(int id) {
         Review review = repository.findById(id).orElse(new Review());
-        return reviewMapper.modelToDTO(review);
+        return mapper.modelToDTO(review);
     }
 
     public List<ReviewDTO> getByComicId(int comicId) {
         List<Review> allReviewsBelongsToComic = repository.findByComicId(comicId);
         return allReviewsBelongsToComic.stream()
-                .map(reviewMapper::modelToDTO)
+                .map(mapper::modelToDTO)
                 .toList();
     }
 
     public Review insert(ReviewRequest request) {
-        Review review = reviewMapper.requestToModel(request);
+        Review review = mapper.requestToModel(request);
         return repository.save(review);
     }
 

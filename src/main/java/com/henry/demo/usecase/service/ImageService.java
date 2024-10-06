@@ -1,5 +1,8 @@
 package com.henry.demo.usecase.service;
 
+import com.henry.demo.adapter.dto.ImageDTO;
+import com.henry.demo.adapter.dto.request.ImageRequest;
+import com.henry.demo.adapter.mapper.ImageMapper;
 import com.henry.demo.domain.model.Image;
 import com.henry.demo.domain.repository.ImageRepository;
 import io.sentry.Sentry;
@@ -14,23 +17,28 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ImageService {
     private final ImageRepository repository;
+    private final ImageMapper mapper;
 
-    public List<Image> getAll() {
-        return repository.findAll();
+    public List<ImageDTO> getAll() {
+        return repository.findAll().stream()
+                .map(mapper::modelToDTO)
+                .toList();
     }
 
-    public Image getById(int id) {
-        return repository.findById(id).orElse(null);
+    public ImageDTO getById(int id) {
+        Image image = repository.findById(id).orElse(null);
+        return mapper.modelToDTO(image);
     }
 
-    public Image insert(Image image) {
+    public Image insert(ImageDTO imageDTO) {
+        Image image = mapper.dtoToModel(imageDTO);
         return repository.save(image);
     }
 
-    public Image update(int id, @NonNull Image image) {
+    public Image update(int id, @NonNull ImageRequest image) {
         try {
             Optional<Image> currentImage = repository.findById(id);
-            Image newImage = currentImage.get();
+            Image newImage = currentImage.orElseThrow();
 
             newImage.setName(image.getName());
             newImage.setUrl(image.getUrl());
