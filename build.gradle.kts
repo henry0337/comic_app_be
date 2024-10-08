@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "com.henry"
-version = "0.0.1-SNAPSHOT"
+version = "1.0.1"
 
 val localProperties = Properties().apply {
     load(FileInputStream(rootProject.file("local.properties")))
@@ -90,11 +90,4 @@ tasks.compileJava {
             "-Amapstruct.verbose=true"
         )
     )
-}
-
-tasks.withType<Checkstyle> {
-    reports {
-        xml.required = false
-        html.required = true
-    }
 }

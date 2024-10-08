@@ -5,6 +5,9 @@ import io.sentry.spring.jakarta.EnableSentry;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * {@link SpringBootApplication}'s entry point
+ */
 @EnableSentry(dsn = SentryConstant.DSN)
 @SpringBootApplication
 public class Application {

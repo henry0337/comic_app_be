@@ -59,7 +59,7 @@ public class AuthController {
      *
      * @param token Token được sử dụng để lấy thông tin chi tiết về người dùng.
      * @return Thông tin của người dùng được lưu trong token.
-     * @apiNote Nếu như bạn muốn test tính năng xác thực trên <b>Swagger UI</b>, hãy đảm bảo rằng bạn đang KHÔNG truyền mã xác thực vào biến {@code token},
+     * @apiNote Nếu như bạn muốn kiểm tra endpoint này trên <b>Swagger UI</b>, đảm bảo rằng bạn đang KHÔNG truyền mã xác thực vào biến {@code token},
      * thay vào đó hãy truyền vào phần <b>Bearer Token</b> trên đó (phần này nằm trong nút <b>Authorize</b> ở góc trên bên phải).
      */
     @GetMapping(Endpoint.USER_INFO)

@@ -16,7 +16,7 @@ public @interface Incubating {
     String message() default "Lớp, phương thức hoặc thuộc tính này đang trong trạng thái phát triển, có thể sẽ thay đổi vào lúc nào đó.";
 
     /**
-     * Thông báo với người dùng rằng liệu lớp, phương thức hoặc thuộc tính được đánh dấu này sẽ bị xóa trong phiên bản nào đó kế tiếp.
+     * Thông báo với người dùng rằng lớp, phương thức hoặc thuộc tính được đánh dấu này sẽ bị xóa trong phiên bản nào đó kế tiếp.
      * @return {@code true} nếu như tính năng sẽ bị loại bỏ, không thì {@code false}
      */
     boolean forRemoval() default false;
