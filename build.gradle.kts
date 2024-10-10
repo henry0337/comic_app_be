@@ -49,10 +49,10 @@ dependencies {
     implementation(libs.spring.oauth2.resource)
     implementation(libs.spring.mail)
     developmentOnly(libs.spring.devtools)
-//    developmentOnly(libs.docker.compose)
+    developmentOnly(libs.docker.compose.support)
 
-    // MySQL Driver
-    runtimeOnly(libs.mysql)
+    // PostgreSQL Driver
+    runtimeOnly(libs.postgresql)
 
     // Lombok
     compileOnly(libs.lombok)
