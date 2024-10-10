@@ -4,7 +4,6 @@ import com.henry.demo.adapter.dto.request.LoginRequest;
 import com.henry.demo.adapter.dto.response.AuthResponse;
 import com.henry.demo.adapter.dto.request.ChangePasswordRequest;
 import com.henry.demo.adapter.dto.request.RegisterRequest;
-import com.henry.demo.common.annotation.Incubating;
 import com.henry.demo.domain.model.User;
 import com.henry.demo.domain.repository.UserRepository;
 import com.henry.demo.usecase.exception.SameAsOldPasswordException;

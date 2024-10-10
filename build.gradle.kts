@@ -49,6 +49,7 @@ dependencies {
     implementation(libs.spring.oauth2.resource)
     implementation(libs.spring.mail)
     developmentOnly(libs.spring.devtools)
+//    developmentOnly(libs.docker.compose)
 
     // MySQL Driver
     runtimeOnly(libs.mysql)

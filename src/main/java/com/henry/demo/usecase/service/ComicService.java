@@ -38,7 +38,7 @@ public class ComicService {
     public Comic update(int id, @NonNull ComicDTO comicDTO) {
         try {
             Optional<Comic> currentComic = repository.findById(id);
-            Comic newComic = currentComic.get();
+            Comic newComic = currentComic.orElseThrow();
 
             newComic.setTitle(comicDTO.getTitle());
             newComic.setDescription(comicDTO.getDescription());
