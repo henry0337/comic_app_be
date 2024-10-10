@@ -21,7 +21,7 @@ public final class TerminalCommand {
 
     /**
      * Lệnh này dùng để mở một tệp hoặc URL trong ứng dụng được ưu tiên của người dùng.
-     * @apiNote Chỉ hoạt động trên các các bản phân phối của hệ điều hành <a href="https://www.linux.org/">Linux</a>.
+     * @apiNote Chỉ hoạt động trên các bản phân phối của hệ điều hành <a href="https://www.linux.org/">Linux</a>.
      * @see <a href="https://man.archlinux.org/man/xdg-open.1.en">Arch Linux's manual page</a>
      */
     public static final String LINUX_OPEN_COMMAND = "xdg-open ";

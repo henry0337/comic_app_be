@@ -14,7 +14,8 @@ spring-oauth2-resource = { group = "org.springframework.boot", name = "spring-bo
 spring-mail = { group = "org.springframework.boot", name = "spring-boot-starter-mail" }
 spring-web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
 spring-devtools = { group = "org.springframework.boot", name = "spring-boot-devtools" }
-mysql = { group = "com.mysql", name = "mysql-connector-j" }
+docker-compose-support = { group = "org.springframework.boot", name = "spring-boot-docker-compose" }
+postgresql = { group = "org.postgresql", name = "postgresql" }
 lombok = { group = "org.projectlombok", name = "lombok" }
 jjwt-api = { group = "io.jsonwebtoken", name = "jjwt-api", version.ref = "jjwt" }
 jjwt-jackson = { group = "io.jsonwebtoken", name = "jjwt-jackson", version.ref = "jjwt" }
