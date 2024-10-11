@@ -1,0 +1,13 @@
+spring.application.name=ComicApp
+
+spring.datasource.url=<your_database_jdbc_url>
+spring.datasource.username=<your_database_username>
+spring.datasource.password=<your_database_username>
+
+spring.jpa.show-sql=true
+spring.jpa.open-in-view=true
+spring.jpa.generate-ddl=true
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.format_sql=true
+
+# spring.profiles.active=dev, test, prod

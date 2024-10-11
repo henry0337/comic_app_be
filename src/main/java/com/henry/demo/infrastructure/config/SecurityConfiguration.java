@@ -22,6 +22,10 @@ import java.util.Arrays;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
+/**
+ * Lớp này chịu trách nhiệm cấu hình xác thực và phân quyền.
+ * @implNote Do được đánh dấu là {@link EnableWebSecurity @EnableWebSecurity} và {@link Configuration @Configuration} nên lớp này sẽ được ưu tiên ghi đè cấu hình liên quan đến bảo mật, nên bất cứ chú thích nào liên quan đến bảo mật đều sẽ bị mất tác dụng.
+ */
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor

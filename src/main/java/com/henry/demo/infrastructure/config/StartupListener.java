@@ -6,13 +6,11 @@ import io.sentry.SentryEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
-import org.springframework.context.annotation.Profile;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-//@Profile({"dev"})
 public class StartupListener implements ApplicationListener<ApplicationReadyEvent> {
 
     @Override

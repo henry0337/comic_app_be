@@ -27,7 +27,6 @@ mapstruct-processor = { group = "org.mapstruct", name = "mapstruct-processor", v
 boot-test = { group = "org.springframework.boot", name = "spring-boot-starter-test" }
 security-test = { group = "org.springframework.security", name = "spring-security-test" }
 junit-platform-launcher = { group = "org.junit.platform", name = "junit-platform-launcher" }
-docker-compose = { group = "org.springframework.boot", name = "spring-boot-docker-compose" }
 
 [plugins]
 springframework-boot = { id = "org.springframework.boot", version.ref = "boot" }
