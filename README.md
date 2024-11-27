@@ -33,7 +33,7 @@
 
 <h3>Nhân bản dự án</h3>
 
-Dùng lệnh sau trong Terinal để nhân bản về thiết bị:
+Dùng lệnh sau trong Terminal để nhân bản dự án về thiết bị của bạn:
 
 ```bash
 git clone https://github.com/henry0337/comic_app_be.git
@@ -117,7 +117,7 @@ docker compose up --watch
 </tr>
 </table>
 
-<h3>Tài liệu tham khảo</h3>
+<h3>Tài liệu tham khảo thêm</h3>
 
 - [Spring Boot](https://spring.io/projects/spring-boot)
 
